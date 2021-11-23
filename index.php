@@ -13,7 +13,11 @@
 
 	} elseif (!empty($_POST['k'])) {
 		try {
-			display_secret(); # user confirmed viewing the secret
+			if(substr_count($_POST["k"], "-") === 3 && substr_count($_POST["k"], "_") === 1) {
+				display_simple_secret();
+			} else {
+				display_secret(); # user confirmed viewing the secret
+			}
 		} catch (Exception $e) { display_error($e); }
 
 	} elseif (isset($_POST['submit']) && !empty($_POST['secret'])) {
@@ -34,7 +38,7 @@
 
 		$template_text = '';
 		if ( !empty($_GET['t']) ) {
-			$safe_path = 'templates/' . basename($_GET['t']) . '.txt';
+			$safe_path = 'templates/' . basename(filter_input(INPUT_GET,"t", FILTER_SANITIZE_STRING)) . '.txt';
 			if ( file_exists($safe_path) ) { $template_text = file_get_contents($safe_path); }
 		}
 		require_once('html/submit_secret.php');
@@ -54,13 +58,25 @@
 		require_once('html/view_secret.php');
 	}
 
+	function display_simple_secret() {
+		global $settings;
+
+		$secret = retrieve_secret_simple($_POST['k']);
+		$message = htmlentities($secret);
+		require_once('html/view_secret.php');
+	}
+
 	function display_secret_code() {
 		global $settings;
 
 		# verify secret length isnt too long
 		if ( strlen($_POST['secret']) > $settings['max_secret_length'] ) { throw new exception("Input length too long"); }
 
-		$message = store_secret($_POST['secret']);
+		if (isset($_POST["easy"])) {
+			$message = store_secret_simple($_POST['secret']);
+		} else {
+			$message = store_secret($_POST['secret']);
+		}
 
 		if ($settings['return_full_url'] == true) {
 			$message = build_url($message);

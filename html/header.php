@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<!--
+		<!-- 
 		######################################################################################
 		# Copyright (c) 2017-2019 Andrew Paglusch                                            #
 		# https://raw.githubusercontent.com/AndrewPaglusch/FlashPaper/master/LICENSE         #
@@ -13,10 +13,13 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<!-- Bootstrap CSS -->
-		<link rel="stylesheet" href="./css/bootstrap_5.0.2.min.css" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+		<link rel="stylesheet" href="./css/bootstrap_5.1.3.min.css" integrity="sha256-YvdLHPgkqJ8DVUxjjnGVlMMJtNimJ6dYkowFFvp4kKs=" crossorigin="anonymous">
 		<style>
+            body {
+                background-color: #EFEFEF;
+            }
 			#form-div {
-				background-color:rgba(72,72,72,0.1);
+				background-color: #FFFFFF;
 				padding-left:35px;
 				padding-right:35px;
 				padding-top:35px;
@@ -26,11 +29,45 @@
 				border-radius: 7px;
 				-moz-border-radius: 7px;
 				-webkit-border-radius: 7px;
+
+                -moz-box-shadow: 0 0 30px rgb(0 0 0 / 20%);
+                -webkit-box-shadow: 0 0 30px rgb(0 0 0 / 20%);
+                box-shadow: 0 0 30px rgb(0 0 0 / 20%);
 			}
 			.form-control[readonly] {
 				background-color:#ffffff !important;
-				opacity:1
+				opacity: 1;
 			}
+            input.form-control[readonly] {
+                width: calc(100% - 40px);
+                -webkit-border-top-right-radius: 0;
+                -moz-border-radius-topright: 0;
+                border-top-right-radius: 0;
+
+                -webkit-border-bottom-right-radius: 0;
+                -moz-border-radius-bottomright: 0;
+                border-bottom-right-radius: 0;
+            }
+            .form-select {
+                cursor: pointer;
+            }
+            .btn.btn-copy {
+                margin: 0;
+                padding: 0;
+                cursor: pointer;
+                text-align: center;
+                line-height: 0;
+                height: 38px;
+                width: 40px;
+
+                -webkit-border-top-left-radius: 0;
+                -moz-border-radius-topleft: 0;
+                border-top-left-radius: 0;
+
+                -webkit-border-bottom-left-radius: 0;
+                -moz-border-radius-bottomleft: 0;
+                border-bottom-left-radius: 0;
+            }
 			textarea {
 				width: 100%;
 				height: 200px;
@@ -45,7 +82,7 @@
 				margin:10px;
 				border: 0;
 			}
-			.btn-primary {
+            .btn-primary {
 				background-color: #4ca2ae;
 				border: none;
 				color: white;
@@ -58,7 +95,7 @@
 				-webkit-transition-duration: 0.4s; /* Safari */
 				transition-duration: 0.4s;
 			}
-			.btn-primary:hover {
+            .btn-primary:hover {
 				background-color: #67b2bc;
 				color: white;
 			}
@@ -72,7 +109,7 @@
 	</head>
 	<body onUnload="document.getElementById('secret').value = ''">
 		<script>
-			if (location.protocol != 'https:') {
+			if (location.protocol !== 'https:') {
 				document.write('<div style="padding-top: 1%" class="container"><div class="alert alert-danger"><strong>Danger!</strong> This site is not being accessed over an encrypted connection. Do NOT input any sensitive information!</div></div>');
 			}
 		</script>

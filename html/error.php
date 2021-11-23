@@ -1,5 +1,5 @@
 <?php defined('_DIRECT_ACCESS_CHECK') or exit(); ?>
-		<div style="width: 60%" id="form-div" class="mx-auto">
+		<div id="form-div" class="container mx-auto">
 			<fieldset style="text-align: center">
 				<div class="form-group row float-middle">
 					<div class="col">
